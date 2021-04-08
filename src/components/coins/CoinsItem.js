@@ -1,5 +1,5 @@
 import React from 'react'
-import { Platform, Text, View } from 'react-native'
+import { Platform, Pressable, Text, View } from 'react-native'
 import Colors from 'cryptoTracker/src/res/colors'
 
 const CoinsItem = ({ item }) => {
@@ -12,7 +12,7 @@ const CoinsItem = ({ item }) => {
     }
 
     return(
-        <View style={styles.container}>
+        <Pressable onPress={onPress} style={styles.container}>
             <View style={styles.row}>
                 <Text style={styles.symbolText}>{item.name}</Text>
                 <Text style={styles.nameText}>{item.symbol}</Text>
@@ -26,7 +26,7 @@ const CoinsItem = ({ item }) => {
                     source={getImgArrow()}
                 />  
             </View>            
-        </View>
+        </Pressable>
     )
 }
 
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         padding:16,
         borderBottomColor: Colors.zircon,
         borderBottomWidth: 1,
+        paddingLeft: Platform.OS == 'ios' ? 0 : 16,
         marginLeft: Platform.OS == 'ios' ? 16 : 0
     },
     row: {
